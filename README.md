@@ -1,10 +1,14 @@
 # FX Rate Monitor & Alerts
 
+[![Live demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://alfredo-fx-monitor.streamlit.app/)
+
 > **For an exporter or freelancer paid in a foreign currency:** know what an invoice is worth *today*, see how much that can swing, and get pinged when a rate crosses a level or makes an unusual move.
 
-**Live demo:** _(Streamlit Community Cloud URL: to be added)_ · Reference/demo data, **not investment advice, no trading features.**
+**Live demo: https://alfredo-fx-monitor.streamlit.app/** (offline snapshot of real ECB data) · Reference/demo data, **not investment advice, no trading features.**
 
 ![dashboard](docs/dashboard.png)
+
+Screenshot of the deployed app after a real click-through: [docs/live-demo.png](docs/live-demo.png).
 
 Light, dark and mobile layouts: [dark](docs/dashboard-dark.png) · [mobile](docs/dashboard-mobile.png).
 
