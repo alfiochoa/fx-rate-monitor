@@ -1,0 +1,9 @@
+base: EUR
+currencies: [USD, GBP, CHF, JPY, CAD, AUD, MXN, BRL, PLN, SEK]   # fetched & stored (vs EUR)
+pairs: [EUR/USD, EUR/GBP, EUR/CHF, EUR/JPY, EUR/CAD, EUR/MXN]    # evaluated for alerts
+thresholds:                                                       # rate crosses X
+  - {pair: EUR/USD, above: 1.15}
+  - {pair: EUR/USD, below: 1.10}
+  - {pair: EUR/GBP, below: 0.84}
+nday: 30          # new N-day high/low
+zscore: 2.5       # unusual daily move: |z| of % change vs trailing 60 days
