@@ -1,0 +1,25 @@
+name: refresh-rates
+on:
+  schedule: [{cron: "30 15 * * 1-5"}]   # weekdays, after the ECB's ~16:00 CET publication window
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: pip install -r requirements.txt
+      - name: Fetch new ECB reference rates, evaluate alerts
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}   # unset -> alerts are mocked (printed)
+          ALERT_WEBHOOK_KIND: slack
+        run: python -m fxmon refresh
+      - name: Commit updated snapshot
+        run: |
+          git config user.name "fx-refresh-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/snapshot.json
+          git diff --cached --quiet || (git commit -m "chore(data): refresh ECB reference rates" && git push)
